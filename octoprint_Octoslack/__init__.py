@@ -1000,6 +1000,7 @@ class OctoslackPlugin(
         override_command_enabled_check,
         event_settings_overrides,
     ):
+        self._logger.debug("Handeling Event: \"" + event)
         try:
             if event == "PrintCancelled":
                 self.stop_progress_timer()
@@ -1054,14 +1055,16 @@ class OctoslackPlugin(
                     ):
                         return
             elif event == "PLUGIN_OCTOLAPSE_MOVIE_DONE":
-              self.handle_event("MovieDone",
-                                channel_override,
-                                payload,
-                                override_notification_enabled_check,
-                                override_command_enabled_check,
-                                event_settings_overrides
-              )
-			
+                self._logger.debug("Got Octolapse 'Timelapse Done' Event. Forwarding to 'MovieDone'")
+                self.handle_event("MovieDone",
+                                  channel_override,
+                                  payload,
+                                  override_notification_enabled_check,
+                                  override_command_enabled_check,
+                                  event_settings_overrides
+                )
+                return
+
             supported_events = self._settings.get(["supported_events"], merged=True)
             if supported_events == None or not event in supported_events:
                 return
