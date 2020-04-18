@@ -1053,7 +1053,15 @@ class OctoslackPlugin(
                         and analysis_result["analysisPending"]
                     ):
                         return
-
+		    elif event == "PLUGIN_OCTOLAPSE_MOVIE_DONE":
+				self.handle_event("MovieDone",
+							  	  channel_override,
+							      payload,
+							      override_notification_enabled_check,
+                        	      override_command_enabled_check,
+                                  event_settings_overrides,
+            	)
+			
             supported_events = self._settings.get(["supported_events"], merged=True)
             if supported_events == None or not event in supported_events:
                 return
