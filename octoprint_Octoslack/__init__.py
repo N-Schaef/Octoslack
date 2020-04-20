@@ -1054,7 +1054,7 @@ class OctoslackPlugin(
                         and analysis_result["analysisPending"]
                     ):
                         return
-            elif event == "PLUGIN_OCTOLAPSE_MOVIE_DONE":
+            elif event == "plugin_octolapse_movie_done":
                 self._logger.debug("Got Octolapse 'Timelapse Done' Event. Forwarding to 'MovieDone'")
                 self.handle_event("MovieDone",
                                   channel_override,
