@@ -1000,7 +1000,6 @@ class OctoslackPlugin(
         override_command_enabled_check,
         event_settings_overrides,
     ):
-        self._logger.debug("Handeling Event: \"" + event)
         try:
             if event == "PrintCancelled":
                 self.stop_progress_timer()
